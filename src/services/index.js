@@ -17,10 +17,11 @@ export default {
     // return cursor.toArray();
 
     return Db.then(db => {
-      return db.collection('restaurants')
-               .find(search)
-               .toArray()
-    });
+        return db.collection('restaurants')
+          .find(search)
+          .toArray()
+      }
+    );
   },
 
   findTopRated() {
@@ -32,7 +33,11 @@ export default {
   },
 
   findById(id) {
-
+    return Db.then(db => {
+        return db.collection('restaurants')
+          .findOne({ _id: ObjectId(id) });
+      }
+    );
   }
 
 };
