@@ -11,11 +11,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/top-rated', (req, res) => {
-  return res.json([ 'top-rated' ]);
+  return res.json(['top-rated']);
 });
 
 router.get('/favorites', (req, res) => {
-  return res.json([ 'favs' ]);
+  return res.json(['favs']);
 });
 
 router.get('/:id', (req, res) => {
@@ -30,6 +30,20 @@ router.get('/:id', (req, res) => {
       return res.json(restaurant);
     })
     .catch(e => res.status(500).json(e));
+});
+
+router.put('/:id', (req, res) => {
+  const id = req.params.id;
+  const restaurant = req.body;
+  
+  return RestaurantService.update(id, restaurant)
+    .then(restaurant => {
+      return res.json(restaurant);
+    })
+    .catch(e => {
+      console.log(e);
+      return res.status(500).json(e);
+    });
 });
 
 

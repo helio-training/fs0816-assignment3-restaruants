@@ -1,7 +1,10 @@
 import Express from 'express';
 import RestaurantRouter from './routes/restaurants';
+import BodyParser from 'body-parser';
 
 const app = Express();
+
+app.use(BodyParser.json());
 
 const PORT = process.env.PORT || 3000;
 
